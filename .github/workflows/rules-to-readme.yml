@@ -2,11 +2,8 @@
 name: Update Readme
 on:
   push:
-    branches: 
-      - master
-    paths:
-    - "src/main/java/carpetextra/CarpetExtraSettings.java"
-    - "README-header.md"
+    branches:
+      - dump-cn-doc
 jobs:
   Rules:
     runs-on: ubuntu-latest
