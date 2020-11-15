@@ -6,42 +6,7 @@ Use along side base [fabric-carpet](https://github.com/gnembon/fabric-carpet) mo
 Due to how autoCraftingTable feature is implemented, it has been moved to [a standalone extension](https://github.com/gnembon/carpet-autoCraftingTable).
 
 # Carpet Extra Features
-Downloading https://services.gradle.org/distributions/gradle-6.6.1-bin.zip
-.................................................................................................
 
-Welcome to Gradle 6.6.1!
-
-Here are the highlights of this release:
- - Experimental build configuration caching
- - Built-in conventions for handling credentials
- - Java compilation supports --release flag
-
-For more details see https://docs.gradle.org/6.6.1/release-notes.html
-
-Starting a Gradle Daemon (subsequent builds will be faster)
-
-> Configure project :
-Fabric Loom: 0.5.35 Build(jenkins #35)
-:setting up loom dependencies
-:setting up mappings (yarn 1.16.4-pre2+build.1)
-:remapping 2 mods (TinyRemapper, intermediary -> named)
-:remapping sources
-:loading intermediary -> named source mappings
-
-> Task :compileJava
-
-> Task :processResources
-> Task :classes
-> Task :jar
-
-> Task :runServer
-[05:13:52] [main/INFO] (FabricLoader) Loading for game Minecraft 1.16.4-pre2
-[05:13:52] [main/INFO] (Fabric|Loader) [FabricLoader] Loading 4 mods: minecraft@1.16.4-beta.2, carpetextra@1.4.11, fabricloader@0.10.3+build.211, carpet@1.4.14
-[05:13:53] [main/INFO] (mixin) SpongePowered MIXIN Subsystem Version=0.8.2 Source=file:/home/runner/.gradle/caches/modules-2/files-2.1/net.fabricmc/sponge-mixin/0.8.2+build.23/155da5ddecdea6ce15891e2973cb9f65ac0d7d10/sponge-mixin-0.8.2+build.23.jar Service=Knot/Fabric Env=SERVER
-[05:13:53] [main/INFO] (Fabric|MixinBootstrap) Loaded Fabric development mappings for mixin remapper!
-[05:13:53] [main/INFO] (mixin) Remapping refMap fabric-carpet-refmap.json using remapper chain
-[05:13:54] [main/WARN] (mixin) @Mixin target net/minecraft/entity/mob/BlazeEntity$ShootFireballGoal is public in carpet.mixins.json:BlazeEntityShootFireballGoal_extremeMixin and should be specified in value
-# Carpet Extra 设置
 ## 准确方块放置支持 (accurateBlockPlacement)
 启用对tweakroo mod的tweakAccurateBlockPlacement选项的支持  
 * 类型: `boolean`  
