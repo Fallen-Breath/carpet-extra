@@ -19,15 +19,15 @@ import java.util.stream.Collectors;
 @Mixin(SettingsManager.class)
 public class CarpetSettingsManagerMixin_cnDoc
 {
-	@Shadow @Final private String fancyName;
+	@Shadow(remap = false) @Final private String fancyName;
 
-	@Shadow private Map<String, ParsedRule<?>> rules;
+	@Shadow(remap = false) private Map<String, ParsedRule<?>> rules;
 
 	/**
 	 * @author Fallen_Breath
 	 * @reason cn doc
 	 */
-	@Overwrite
+	@Overwrite(remap = false)
 	public int printAllRulesToLog(String category)
 	{
 		CarpetSettings.language = "zh_cn";
