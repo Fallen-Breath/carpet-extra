@@ -62,7 +62,7 @@ jobs:
       - name: Proccess Gradle log into a pretty readme page
         run: |
           cat README-header.md > README.md
-          from1="# Carpet Mod Settings";
+          from1="# Carpet Extra 设置";
           File=settings-toProccess.txt
           if grep -q "Deprecated Gradle features" "$File"; then # Happens after update to Gradle 6
             to2="Deprecated Gradle features";
