@@ -3,7 +3,6 @@
   "package": "carpetextra.mixins",
   "compatibilityLevel": "JAVA_8",
   "mixins": [
-    "CarpetSettingsManagerMixin_cnDoc",
     "CrashReport_noopMixin",
     "DispenserBlockMixin",
     "FallingBlockEntityMixin",
