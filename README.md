@@ -6,347 +6,381 @@ Use along side base [fabric-carpet](https://github.com/gnembon/fabric-carpet) mo
 Due to how autoCraftingTable feature is implemented, it has been moved to [a standalone extension](https://github.com/gnembon/carpet-autoCraftingTable).
 
 # Carpet Extra Features
+Downloading https://services.gradle.org/distributions/gradle-6.6.1-bin.zip
+.................................................................................................
 
-## accurateBlockPlacement
-Client can provide alternative block placement.  
-* Type: `boolean`  
-* Default value: `false`  
-* Required options: `true`, `false`  
-* Categories: `EXTRAS`, `SURVIVAL`  
+Welcome to Gradle 6.6.1!
+
+Here are the highlights of this release:
+ - Experimental build configuration caching
+ - Built-in conventions for handling credentials
+ - Java compilation supports --release flag
+
+For more details see https://docs.gradle.org/6.6.1/release-notes.html
+
+Starting a Gradle Daemon (subsequent builds will be faster)
+
+> Configure project :
+Fabric Loom: 0.5.35 Build(jenkins #35)
+:setting up loom dependencies
+:setting up mappings (yarn 1.16.4-pre2+build.1)
+:remapping 2 mods (TinyRemapper, intermediary -> named)
+:remapping sources
+:loading intermediary -> named source mappings
+
+> Task :compileJava
+
+> Task :processResources
+> Task :classes
+> Task :jar
+
+> Task :runServer
+[05:13:52] [main/INFO] (FabricLoader) Loading for game Minecraft 1.16.4-pre2
+[05:13:52] [main/INFO] (Fabric|Loader) [FabricLoader] Loading 4 mods: minecraft@1.16.4-beta.2, carpetextra@1.4.11, fabricloader@0.10.3+build.211, carpet@1.4.14
+[05:13:53] [main/INFO] (mixin) SpongePowered MIXIN Subsystem Version=0.8.2 Source=file:/home/runner/.gradle/caches/modules-2/files-2.1/net.fabricmc/sponge-mixin/0.8.2+build.23/155da5ddecdea6ce15891e2973cb9f65ac0d7d10/sponge-mixin-0.8.2+build.23.jar Service=Knot/Fabric Env=SERVER
+[05:13:53] [main/INFO] (Fabric|MixinBootstrap) Loaded Fabric development mappings for mixin remapper!
+[05:13:53] [main/INFO] (mixin) Remapping refMap fabric-carpet-refmap.json using remapper chain
+[05:13:54] [main/WARN] (mixin) @Mixin target net/minecraft/entity/mob/BlazeEntity$ShootFireballGoal is public in carpet.mixins.json:BlazeEntityShootFireballGoal_extremeMixin and should be specified in value
+# Carpet Extra 设置
+## 准确方块放置支持 (accurateBlockPlacement)
+启用对tweakroo mod的tweakAccurateBlockPlacement选项的支持  
+* 类型: `boolean`  
+* 默认值: `false`  
+* 要求选项: `true`, `false`  
+* 分类: `EXTRAS`, `SURVIVAL`  
   
-## autoCraftingDropper
-Auto-crafting dropper  
-If a dropper points into a crafting table and contains a valid 3x3 crafting recipe, firing that   
-dropper will cause it to craft (drop as item) that recipe.   
-Overrides comparators so they indicate number of filled slots instead.  
-Also makes hoppers, droppers and dispensers input max 1 item per slot.  
-* Type: `boolean`  
-* Default value: `false`  
-* Required options: `true`, `false`  
-* Categories: `CREATIVE`, `EXTRAS`, `DISPENSER`  
+## 投掷器自动合成 (autoCraftingDropper)
+指向工作台的投掷器可以合成物品  
+当一个投掷器指向工作台时，若该投掷器的3x3空间中存在一个合法的配方，  
+则在它被激活时，它会合成这个配方，并丢出产物  
+对于这类指向工作台的投掷器，它们输出比较器信号的逻辑被修改，信号强度与被填充的格子数量相关  
+除此之外，当使用漏斗、投掷器以及发射器向它们输入时，它们每个槽位最多仅接受一个物品  
+* 类型: `boolean`  
+* 默认值: `false`  
+* 要求选项: `true`, `false`  
+* 分类: `CREATIVE`, `EXTRAS`, `DISPENSER`  
   
-## betterBonemeal
-Bonemeal can be used to grow sugarcane and cactus.  
-* Type: `boolean`  
-* Default value: `false`  
-* Required options: `true`, `false`  
-* Categories: `FEATURE`, `EXTRAS`, `SURVIVAL`  
+## 更好的骨粉 (betterBonemeal)
+骨粉可被用于催熟仙人掌及甘蔗  
+* 类型: `boolean`  
+* 默认值: `false`  
+* 要求选项: `true`, `false`  
+* 分类: `FEATURE`, `EXTRAS`, `SURVIVAL`  
   
-## blazeMeal
-Blaze powder fertilizes netherwart.  
-Via dispenser or player right click actions.  
-* Type: `boolean`  
-* Default value: `false`  
-* Required options: `true`, `false`  
-* Categories: `EXTRAS`, `FEATURE`, `SURVIVAL`  
+## 烈焰棒肥料 (blazeMeal)
+烈焰棒可以催熟下界疣  
+可通过发射器或玩家右键动作来催熟  
+* 类型: `boolean`  
+* 默认值: `false`  
+* 要求选项: `true`, `false`  
+* 分类: `EXTRAS`, `FEATURE`, `SURVIVAL`  
   
-## blockStateSyncing
-Fixes block states in F3 debug mode not updating for some blocks.  
-May cause increased network traffic.  
-Works with cactus, sugar cane, saplings, hoppers, dispensers and droppers.  
-* Type: `boolean`  
-* Default value: `false`  
-* Required options: `true`, `false`  
-* Categories: `EXTRAS`, `EXPERIMENTAL`  
+## 方块状态同步 (blockStateSyncing)
+修复F3调试界面中某些方块的方块状态不被更新  
+可能会增加网络负载  
+影响方块：仙人掌、甘蔗、树苗、漏斗、发射器以及投掷器  
+* 类型: `boolean`  
+* 默认值: `false`  
+* 要求选项: `true`, `false`  
+* 分类: `EXTRAS`, `EXPERIMENTAL`  
   
-## chickenShearing
-Chickens can be sheared to get feathers. Beware! every time u shear a chicken, it gets damaged!  
-Baby chickens can't be sheared.  
-* Type: `boolean`  
-* Default value: `false`  
-* Required options: `true`, `false`  
-* Categories: `EXTRAS`, `FEATURE`  
+## 剪鸡毛 (chickenShearing)
+你可以用剪刀从鸡的身上剪下羽毛。注意！每次你剪鸡毛时鸡都会受伤！  
+未成年的鸡不能被剪下羽毛  
+* 类型: `boolean`  
+* 默认值: `false`  
+* 要求选项: `true`, `false`  
+* 分类: `EXTRAS`, `FEATURE`  
   
-## clericsFarmWarts
-Clerics can warm nether farts.  
-This will also allow them to pick up wart items, as well as pathfind to soulsand.  
-* Type: `boolean`  
-* Default value: `false`  
-* Required options: `true`, `false`  
-* Categories: `EXTRAS`, `FEATURE`  
+## 牧师收获下界疣 (clericsFarmWarts)
+让牧师可以收获下界疣  
+同时这也会让它们能够捡起下界疣物品  
+以及让它们寻路至灵魂沙  
+* 类型: `boolean`  
+* 默认值: `false`  
+* 要求选项: `true`, `false`  
+* 分类: `EXTRAS`, `FEATURE`  
   
-## commandPing
-Enables `/ping` for players to get their ping.  
-* Type: `boolean`  
-* Default value: `true`  
-* Required options: `true`, `false`  
-* Categories: `COMMAND`, `EXTRAS`  
-* Additional notes:  
+## 延迟测试 (commandPing)
+启用`/ping`命令让玩家可获得他们的网络延迟  
+* 类型: `boolean`  
+* 默认值: `true`  
+* 要求选项: `true`, `false`  
+* 分类: `COMMAND`, `EXTRAS`  
+* 附加说明:  
   * It has an accompanying command  
   
-## comparatorReadsClock
-Allows Comparators to read the daytime instead of the rotation of clocks in item frames.  
-* Type: `boolean`  
-* Default value: `false`  
-* Required options: `true`, `false`  
-* Categories: `FEATURE`, `EXTRAS`, `EXPERIMENTAL`  
+## 比较器读取时钟 (comparatorReadsClock)
+让比较器读取展示框内钟的时间，而非钟物品在展示框中的旋转角度  
+* 类型: `boolean`  
+* 默认值: `false`  
+* 要求选项: `true`, `false`  
+* 分类: `FEATURE`, `EXTRAS`, `EXPERIMENTAL`  
   
-## creeperSpawningInJungleTemples
-Only creepers spawn in jungle temples.  
-* Type: `boolean`  
-* Default value: `false`  
-* Required options: `true`, `false`  
-* Categories: `FEATURE`, `EXTRAS`  
+## 爬行者于雪屋生成 (creeperSpawningInJungleTemples)
+雪屋中能且仅能生成爬行者  
+* 类型: `boolean`  
+* 默认值: `false`  
+* 要求选项: `true`, `false`  
+* 分类: `FEATURE`, `EXTRAS`  
   
-## disablePlayerCollision
-Disables player entity collision.  
-* Type: `boolean`  
-* Default value: `false`  
-* Required options: `true`, `false`  
-* Categories: `EXTRAS`, `CREATIVE`, `EXPERIMENTAL`  
+## 禁用玩家碰撞 (disablePlayerCollision)
+禁用玩家实体的碰撞  
+* 类型: `boolean`  
+* 默认值: `false`  
+* 要求选项: `true`, `false`  
+* 分类: `EXTRAS`, `CREATIVE`, `EXPERIMENTAL`  
   
-## dispenserPlacesBlocks
-Dispensers can place blocks.  
-* Type: `boolean`  
-* Default value: `false`  
-* Required options: `true`, `false`  
-* Categories: `CREATIVE`, `EXTRAS`, `DISPENSER`  
+## 发射器放置方块 (dispenserPlacesBlocks)
+发射器可放置方块  
+* 类型: `boolean`  
+* 默认值: `false`  
+* 要求选项: `true`, `false`  
+* 分类: `CREATIVE`, `EXTRAS`, `DISPENSER`  
   
-## dispensersCarvePumpkins
-Dispensers containing shears can carve pumpkins.  
-* Type: `boolean`  
-* Default value: `false`  
-* Required options: `true`, `false`  
-* Categories: `EXTRAS`, `FEATURE`, `DISPENSER`  
+## 发射器雕刻南瓜 (dispensersCarvePumpkins)
+含有剪刀的发射器可以雕刻南瓜  
+* 类型: `boolean`  
+* 默认值: `false`  
+* 要求选项: `true`, `false`  
+* 分类: `EXTRAS`, `FEATURE`, `DISPENSER`  
   
-## dispensersFeedAnimals
-Dispensers can feed animals.  
-* Type: `boolean`  
-* Default value: `false`  
-* Required options: `true`, `false`  
-* Categories: `EXTRAS`, `EXPERIMENTAL`, `FEATURE`, `DISPENSER`  
+## 发射器喂食动物 (dispensersFeedAnimals)
+发射器可喂食动物  
+* 类型: `boolean`  
+* 默认值: `false`  
+* 要求选项: `true`, `false`  
+* 分类: `EXTRAS`, `EXPERIMENTAL`, `FEATURE`, `DISPENSER`  
   
-## dispensersFillMinecarts
-Minecarts can be filled with hoppers, chests, tnt and furnace.  
-* Type: `boolean`  
-* Default value: `false`  
-* Required options: `true`, `false`  
-* Categories: `EXPERIMENTAL`, `FEATURE`, `EXTRAS`, `DISPENSER`  
+## 发射器组装矿车 (dispensersFillMinecarts)
+发射器可将漏斗、箱子、TNT以及熔炉放入矿车中  
+* 类型: `boolean`  
+* 默认值: `false`  
+* 要求选项: `true`, `false`  
+* 分类: `EXPERIMENTAL`, `FEATURE`, `EXTRAS`, `DISPENSER`  
   
-## dispensersMilkCows
-Dispensers with empty buckets can milk cows and get stew from mooshrooms with bowls.  
-* Type: `boolean`  
-* Default value: `false`  
-* Required options: `true`, `false`  
-* Categories: `EXPERIMENTAL`, `EXTRAS`, `FEATURE`, `DISPENSER`  
+## 发射器挤奶 (dispensersMilkCows)
+发射器可使用空桶给牛挤奶，也可以使用碗给蘑菇牛挤蘑菇煲  
+* 类型: `boolean`  
+* 默认值: `false`  
+* 要求选项: `true`, `false`  
+* 分类: `EXPERIMENTAL`, `EXTRAS`, `FEATURE`, `DISPENSER`  
   
-## dispensersPlayRecords
-Dispensers can play records if there's a jukebox in front of them.  
-If a record already exists in the jukebox, it gets placed back in the dispenser.  
-* Type: `boolean`  
-* Default value: `false`  
-* Required options: `true`, `false`  
-* Categories: `EXTRAS`, `FEATURE`, `DISPENSER`  
+## 发射器播放唱片 (dispensersPlayRecords)
+发射器可以使用其前方的唱片机播放唱片  
+如果唱片机中已存在唱片，已存在的唱片将会被放回投掷器中  
+* 类型: `boolean`  
+* 默认值: `false`  
+* 要求选项: `true`, `false`  
+* 分类: `EXTRAS`, `FEATURE`, `DISPENSER`  
   
-## dispensersTillSoil
-Dispensers with hoes can till soil.  
-* Type: `boolean`  
-* Default value: `false`  
-* Required options: `true`, `false`  
-* Categories: `EXTRAS`, `FEATURE`, `DISPENSER`  
+## 发射器锄地 (dispensersTillSoil)
+发射器可使用锄来锄地  
+* 类型: `boolean`  
+* 默认值: `false`  
+* 要求选项: `true`, `false`  
+* 分类: `EXTRAS`, `FEATURE`, `DISPENSER`  
   
-## dispensersToggleThings
-Dispensers containing a stick can toggle things.  
-Works with buttons, redstone, noteblocks, comparators, repeaters,   
-daylight detectors, etc.  
-* Type: `boolean`  
-* Default value: `false`  
-* Required options: `true`, `false`  
-* Categories: `EXTRAS`, `EXPERIMENTAL`, `FEATURE`, `DISPENSER`  
+## 发射器拨动方块 (dispensersToggleThings)
+含有木棍的发射器可以拨动各种方块  
+对按钮、红石粉、音符盒、红石比较器、红石中继器以及阳光传感器等有效  
+* 类型: `boolean`  
+* 默认值: `false`  
+* 要求选项: `true`, `false`  
+* 分类: `EXTRAS`, `EXPERIMENTAL`, `FEATURE`, `DISPENSER`  
   
-## doubleRetraction
-Re-adds 1.8 double retraction to pistons.  
-Gives pistons the ability to double retract without side effects.  
-Fixes [MC-88959](https://bugs.mojang.com/browse/MC-88959).  
-* Type: `boolean`  
-* Default value: `false`  
-* Required options: `true`, `false`  
-* Categories: `EXTRAS`, `EXPERIMENTAL`  
+## 活塞双重收回 (doubleRetraction)
+重新实现1.8版本中活塞的双重收回  
+让活塞无副作用地得到双重收回的能力  
+* 类型: `boolean`  
+* 默认值: `false`  
+* 要求选项: `true`, `false`  
+* 分类: `EXTRAS`, `EXPERIMENTAL`  
   
-## dragonEggBedrockBreaking
-Reintroduce the Dragon Egg Bedrock breaking bug from 1.12.  
-* Type: `boolean`  
-* Default value: `false`  
-* Required options: `true`, `false`  
-* Categories: `EXTRAS`, `EXPERIMENTAL`  
+## 龙蛋破基岩 (dragonEggBedrockBreaking)
+重新引入1.12的龙蛋破基岩机制  
+* 类型: `boolean`  
+* 默认值: `false`  
+* 要求选项: `true`, `false`  
+* 分类: `EXTRAS`, `EXPERIMENTAL`  
   
-## dragonsBreathConvertsCobbleToEndstone
-Dragon's breath from dispensers convert cobblestone to end stone.  
-* Type: `boolean`  
-* Default value: `false`  
-* Required options: `true`, `false`  
-* Categories: `EXTRAS`, `EXPERIMENTAL`, `DISPENSER`  
+## 龙息转换圆石至末地石 (dragonsBreathConvertsCobbleToEndstone)
+发射器中的龙息可将圆石转换为末地石  
+* 类型: `boolean`  
+* 默认值: `false`  
+* 要求选项: `true`, `false`  
+* 分类: `EXTRAS`, `EXPERIMENTAL`, `DISPENSER`  
   
-## emptyShulkerBoxStackAlways
-Empty Shulker Boxes will always stack, even inside inventories.  
-* Type: `boolean`  
-* Default value: `false`  
-* Required options: `true`, `false`  
-* Categories: `FEATURE`, `EXTRAS`, `EXPERIMENTAL`  
+## 空潜影盒总能堆叠 (emptyShulkerBoxStackAlways)
+让空潜影盒总能堆叠起来，包括在物品栏中  
+* 类型: `boolean`  
+* 默认值: `false`  
+* 要求选项: `true`, `false`  
+* 分类: `FEATURE`, `EXTRAS`, `EXPERIMENTAL`  
   
-## enderPearlChunkLoading
-Allow horizontally moving Ender Pearls to load chunks as entity ticking.  
-* Type: `boolean`  
-* Default value: `false`  
-* Required options: `true`, `false`  
-* Categories: `FEATURE`, `EXTRAS`  
+## 末影珍珠区块加载 (enderPearlChunkLoading)
+让水平移动的末影珍珠可以强加载区块  
+* 类型: `boolean`  
+* 默认值: `false`  
+* 要求选项: `true`, `false`  
+* 分类: `FEATURE`, `EXTRAS`  
   
-## fireChargeConvertsToNetherrack
-Fire charges from dispensers convert cobblestone to netherrack.  
-Credits: Skyrising  
-* Type: `boolean`  
-* Default value: `false`  
-* Required options: `true`, `false`  
-* Categories: `EXTRAS`, `EXPERIMENTAL`  
+## 烈焰弹转换圆石至下界岩 (fireChargeConvertsToNetherrack)
+发射器中的烈焰弹可将圆石转换为下界岩  
+感谢：Skyrising  
+* 类型: `boolean`  
+* 默认值: `false`  
+* 要求选项: `true`, `false`  
+* 分类: `EXTRAS`, `EXPERIMENTAL`  
   
-## flowerPotChunkLoading
-Placing a wither rose in a flowerpot will load that chunk.  
-If u enable the rule the already existing chunks with flowerpots won't be loaded.   
-Also disabling the carpet rule won't remove the loaded chunks, u need to manually unload them using the /forceload command.   
-All the loaded chunks can be seen using `/forceload query`  
-* Type: `boolean`  
-* Default value: `false`  
-* Required options: `true`, `false`  
-* Categories: `EXTRAS`, `FEATURE`, `EXPERIMENTAL`  
+## 花盆区块加载 (flowerPotChunkLoading)
+将凋零玫瑰放置于花盆中以常加载其所在的区块  
+如果你启用了这个规则，已存在花盆的区块不会被加载  
+如果你关闭了这个规则，处于加载状态的花盆区块不会被移除，你需要手动使用/forceload指令来移除它们  
+所有常加载区块的列表可用`/forceload query`查询  
+* 类型: `boolean`  
+* 默认值: `false`  
+* 要求选项: `true`, `false`  
+* 分类: `EXTRAS`, `FEATURE`, `EXPERIMENTAL`  
   
-## hopperMinecart8gtCooldown
-Makes Hopper Minecarts have an 8gt cooldown like hoppers.  
-* Type: `boolean`  
-* Default value: `false`  
-* Required options: `true`, `false`  
-* Categories: `BUGFIX`, `FEATURE`, `EXTRAS`, `EXPERIMENTAL`  
+## 漏斗矿车8gt冷却 (hopperMinecart8gtCooldown)
+让漏斗矿车具有跟漏斗类似的8gt延迟  
+* 类型: `boolean`  
+* 默认值: `false`  
+* 要求选项: `true`, `false`  
+* 分类: `BUGFIX`, `FEATURE`, `EXTRAS`, `EXPERIMENTAL`  
   
-## hopperMinecartItemTransfer
-Allows Hopper Minecarts to transfer items into containers below them.  
-* Type: `boolean`  
-* Default value: `false`  
-* Required options: `true`, `false`  
-* Categories: `BUGFIX`, `FEATURE`, `EXTRAS`, `EXPERIMENTAL`  
+## 漏斗矿车输出物品 (hopperMinecartItemTransfer)
+让漏斗矿车可以向其下方容器输出物品  
+* 类型: `boolean`  
+* 默认值: `false`  
+* 要求选项: `true`, `false`  
+* 分类: `BUGFIX`, `FEATURE`, `EXTRAS`, `EXPERIMENTAL`  
   
-## maxSpongeRange
-Maximum offset limit for sponge.  
-* Type: `int`  
-* Default value: `7`  
-* Suggested options: `7`  
-* Categories: `FEATURE`, `EXTRAS`  
+## 海绵吸水距离 (maxSpongeRange)
+海绵吸水的最大偏移距离  
+* 类型: `int`  
+* 默认值: `7`  
+* 建议选项: `7`  
+* 分类: `FEATURE`, `EXTRAS`  
   
-## maxSpongeSuck
-Maximum water sucking for sponge.  
-* Type: `int`  
-* Default value: `64`  
-* Suggested options: `64`  
-* Categories: `FEATURE`, `EXTRAS`  
+## 海绵吸水量 (maxSpongeSuck)
+海绵的最大吸水量  
+* 类型: `int`  
+* 默认值: `64`  
+* 建议选项: `64`  
+* 分类: `FEATURE`, `EXTRAS`  
   
-## mobInFireConvertsSandToSoulsand
-If a living entity dies on sand with fire on top the sand will convert into soul sand.  
-* Type: `boolean`  
-* Default value: `false`  
-* Required options: `true`, `false`  
-* Categories: `EXTRAS`, `FEATURE`, `EXPERIMENTAL`  
+## 着火的生物将沙子转换为灵魂沙 (mobInFireConvertsSandToSoulsand)
+当生物死于沙子上的火焰时，沙子将会转换为灵魂沙  
+* 类型: `boolean`  
+* 默认值: `false`  
+* 要求选项: `true`, `false`  
+* 分类: `EXTRAS`, `FEATURE`, `EXPERIMENTAL`  
   
-## pistonRedirectsRedstone
-Pistons and sticky pistons redirect redstone  
+## 活塞重定向红石粉 (pistonRedirectsRedstone)
+活塞以及粘性活塞可以重定向红石粉指向  
 When retracting, they will blink visually  
 but that's only to minimize changes required for it to work  
-* Type: `boolean`  
-* Default value: `false`  
-* Required options: `true`, `false`  
-* Categories: `EXTRAS`, `FEATURE`  
+* 类型: `boolean`  
+* 默认值: `false`  
+* 要求选项: `true`, `false`  
+* 分类: `EXTRAS`, `FEATURE`  
   
-## reloadSuffocationFix
-Won't let mobs glitch into blocks when reloaded.  
-Can cause slight differences in mobs behaviour.  
-Fixes [MC-2025](https://bugs.mojang.com/browse/MC-2025).  
-* Type: `boolean`  
-* Default value: `false`  
-* Required options: `true`, `false`  
-* Categories: `EXTRAS`, `BUGFIX`, `EXPERIMENTAL`  
+## 重载窒息修复 (reloadSuffocationFix)
+让生物不会在区块重载后卡进方块里  
+生物表现可能会有轻微的不同  
+修复了[MC-2025](https://bugs.mojang.com/browse/MC-2025)  
+* 类型: `boolean`  
+* 默认值: `false`  
+* 要求选项: `true`, `false`  
+* 分类: `EXTRAS`, `BUGFIX`, `EXPERIMENTAL`  
   
-## renewableLava
-Obsidian surrounded by 6 lava sources has a chance of converting to lava.  
-Credits: Skyrising  
-* Type: `boolean`  
-* Default value: `false`  
-* Required options: `true`, `false`  
-* Categories: `EXTRAS`, `EXPERIMENTAL`, `FEATURE`  
+## 可再生岩浆 (renewableLava)
+被6个岩浆源围绕的黑曜石有概率转换为岩浆  
+感谢：Skyrising  
+* 类型: `boolean`  
+* 默认值: `false`  
+* 要求选项: `true`, `false`  
+* 分类: `EXTRAS`, `EXPERIMENTAL`, `FEATURE`  
   
-## renewablePackedIce
-Multiple ice crushed by falling anvils make packed ice.  
-* Type: `boolean`  
-* Default value: `false`  
-* Required options: `true`, `false`  
-* Categories: `EXTRAS`, `EXPERIMENTAL`, `FEATURE`  
+## 可再生浮冰 (renewablePackedIce)
+掉落的铁砧压碎多个冰块时会将冰转换为浮冰  
+* 类型: `boolean`  
+* 默认值: `false`  
+* 要求选项: `true`, `false`  
+* 分类: `EXTRAS`, `EXPERIMENTAL`, `FEATURE`  
   
-## renewableSand
-Cobblestone crushed by falling anvils makes sand.  
-* Type: `boolean`  
-* Default value: `false`  
-* Required options: `true`, `false`  
-* Categories: `EXTRAS`, `EXPERIMENTAL`, `FEATURE`  
+## 可再生沙子 (renewableSand)
+被铁砧砸到的圆石会变成沙子  
+* 类型: `boolean`  
+* 默认值: `false`  
+* 要求选项: `true`, `false`  
+* 分类: `EXTRAS`, `EXPERIMENTAL`, `FEATURE`  
   
-## renewableWitherSkeletons
-Skeletons turn into wither skeletons when struck by lightning.  
-* Type: `boolean`  
-* Default value: `false`  
-* Required options: `true`, `false`  
-* Categories: `FEATURE`, `EXTRAS`  
+## 可再生凋灵骷髅 (renewableWitherSkeletons)
+被闪电击中的骷髅会转换为凋灵骷髅  
+* 类型: `boolean`  
+* 默认值: `false`  
+* 要求选项: `true`, `false`  
+* 分类: `FEATURE`, `EXTRAS`  
   
-## repeaterPriorityFix
-Quick pulses won't get lost in repeater setups.  
-Probably brings back pre 1.8 behaviour.  
-Fixes [MC-54711](https://bugs.mojang.com/browse/MC-54711).  
-* Type: `boolean`  
-* Default value: `false`  
-* Required options: `true`, `false`  
-* Categories: `EXTRAS`, `BUGFIX`, `EXPERIMENTAL`  
+## 红石中继器优先级修复 (repeaterPriorityFix)
+短脉冲不会在某些中继器序列中消失  
+可以说是带回了1.8前的表现  
+修复了[MC-54711](https://bugs.mojang.com/browse/MC-54711)  
+* 类型: `boolean`  
+* 默认值: `false`  
+* 要求选项: `true`, `false`  
+* 分类: `EXTRAS`, `BUGFIX`, `EXPERIMENTAL`  
   
-## scaffoldingDistance
-Max distance for scaffolding.  
-* Type: `int`  
-* Default value: `7`  
-* Suggested options: `2`, `3`, `5`, `7`  
-* Categories: `FEATURE`, `EXTRAS`  
-* Additional notes:  
+## 脚手架距离上限 (scaffoldingDistance)
+脚手架水平扩展的距离上限  
+* 类型: `int`  
+* 默认值: `7`  
+* 建议选项: `2`, `3`, `5`, `7`  
+* 分类: `FEATURE`, `EXTRAS`  
+* 附加说明:  
   * You must choose a value from 0 to 7  
   
-## spiderJockeysDropGapples
-Gives Spider jockeys a specified chance to drop enchanted golden apples.  
-0 is the default setting, no enchanted golden apples will be dropped  
-* Type: `int`  
-* Default value: `0`  
-* Required options: `0`, `50`, `100`  
-* Categories: `EXTRAS`, `FEATURE`  
-* Additional notes:  
+## 蜘蛛骑士掉落附魔金苹果 (spiderJockeysDropGapples)
+让骷髅骑士有一定概率掉落附魔金苹果  
+默认值为0，即不会掉落附魔金苹果  
+* 类型: `int`  
+* 默认值: `0`  
+* 要求选项: `0`, `50`, `100`  
+* 分类: `EXTRAS`, `FEATURE`  
+* 附加说明:  
   * You must choose a value from 0 to 100  
   
-## straySpawningInIgloos
-Only strays spawn in igloos.  
-* Type: `boolean`  
-* Default value: `false`  
-* Required options: `true`, `false`  
-* Categories: `FEATURE`, `EXTRAS`  
+## 流浪者于雪屋生成 (straySpawningInIgloos)
+雪屋中能且仅能生成流浪者  
+* 类型: `boolean`  
+* 默认值: `false`  
+* 要求选项: `true`, `false`  
+* 分类: `FEATURE`, `EXTRAS`  
   
-## updateSuppressionCrashFix
-Fixes updates suppression causing server crashes.  
-* Type: `boolean`  
-* Default value: `false`  
-* Required options: `true`, `false`  
-* Categories: `BUGFIX`, `EXTRAS`  
+## 更新抑制崩服修复 (updateSuppressionCrashFix)
+抑制因更新抑制导致的服务器崩溃  
+* 类型: `boolean`  
+* 默认值: `false`  
+* 要求选项: `true`, `false`  
+* 分类: `BUGFIX`, `EXTRAS`  
   
-## variableWoodDelays
-Variable delays on wooden components (buttons, pressure plates).  
-* Type: `boolean`  
-* Default value: `false`  
-* Required options: `true`, `false`  
-* Categories: `EXTRAS`, `FEATURE`  
+## 木质元件可变延迟 (variableWoodDelays)
+木质压力板、按钮将因其种类不同而拥有不同的延迟  
+* 类型: `boolean`  
+* 默认值: `false`  
+* 要求选项: `true`, `false`  
+* 分类: `EXTRAS`, `FEATURE`  
   
-## y0DragonEggBedrockBreaking
-Let dragon eggs break Y0 bedrock.  
-Requires dragonEggBedrockBreaking to be set to true.  
-* Type: `boolean`  
-* Default value: `false`  
-* Required options: `true`, `false`  
-* Categories: `EXPERIMENTAL`, `EXTRAS`  
+## y0龙蛋破基岩 (y0DragonEggBedrockBreaking)
+让龙蛋可破除y0基岩  
+需开启dragonEggBedrockBreaking(龙蛋破基岩)规则  
+* 类型: `boolean`  
+* 默认值: `false`  
+* 要求选项: `true`, `false`  
+* 分类: `EXPERIMENTAL`, `EXTRAS`  
   
 
 
